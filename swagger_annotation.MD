@@ -22,9 +22,32 @@ ServiceComb当前支持的属性只有tags。
 
 > `@SwaggerDefinition`作用于类级别，用于定义一个Swagger资源中的信息。
 
-- info
-  + description<br/>
+| 属性 | 取值范围 | 说明 |
+| :--- | :------ | :--- |
+| info.title | string | 契约文件标题 |
+| info.description | string | 描述信息 |
+| info.version | string | 契约版本号 |
+| info.termsOfService | string | 服务条款
 
-  + version
+- info
+  + title<br/>
+  契约文件标题，对应契约文件中的`info.title`
+  + description<br/>
+  Swagger契约描述信息，对应契约文件中的`info.description`
+  + version<br/>
+  契约版本号，对应契约文件中的`info.version`
+  + termsOfService<br/>
+  服务条款，对应契约文件中的`info.termsOfService`
+  + contact<br/>
+  联系信息，包含name、email、url属性，对应契约文件中的`info.contact`
+  + license<br/>
+  许可证信息，包含name、url属性，对应契约文件中的`info.license`
+  + extensions<br/>
+- consumes<br/>
+接收的请求格式，对应契约文件
+- produces
+- schemes
+- tags
+- externalDocs
 
 ## 示例代码
