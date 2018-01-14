@@ -15,8 +15,9 @@ Swagger提供了一套注解用于描述接口契约，用户使用注解，可�
 > `@Api`作用于类级别，在Swagger官方描述中是用于将一个Class标注为一个Swagger资源。但该注解在ServiceComb中不是必须的，ServiceComb可以根据`@RestSchema`和`@RpcSchema`确定需要从哪些类中解析出Swagger契约。<br/>
 ServiceComb当前支持的属性只有tags。
 
-- tags<br/>
-设置当前Class下定义的operation的默认tag值。
+| 属性 | 取值范围 | 说明 |
+| :--- | :------ | :--- |
+| tags | string | 设置当前Class下定义的operation的默认tag值 |
 
 ### `@SwaggerDefinition`
 
@@ -27,27 +28,30 @@ ServiceComb当前支持的属性只有tags。
 | info.title | string | 契约文件标题 |
 | info.description | string | 描述信息 |
 | info.version | string | 契约版本号 |
-| info.termsOfService | string | 服务条款
+| info.termsOfService | string | 服务条款 |
+| info.contact | string | 联系信息，包含name、email、url属性 |
+| info.license | string | 许可证信息，包含name、url属性 |
+| info.extensions | string | 扩展信息 |
+| consumes | string | 接收的请求格式 |
+| produces | string | 返回的应答格式 |
+| schemes | string | 可选值有`HTTP/HTTPS/WS/WSS` |
+| tags | string | Tag定义 |
+| externalDocs | string | 外部文档链接 |
 
-- info
-  + title<br/>
-  契约文件标题，对应契约文件中的`info.title`
-  + description<br/>
-  Swagger契约描述信息，对应契约文件中的`info.description`
-  + version<br/>
-  契约版本号，对应契约文件中的`info.version`
-  + termsOfService<br/>
-  服务条款，对应契约文件中的`info.termsOfService`
-  + contact<br/>
-  联系信息，包含name、email、url属性，对应契约文件中的`info.contact`
-  + license<br/>
-  许可证信息，包含name、url属性，对应契约文件中的`info.license`
-  + extensions<br/>
-- consumes<br/>
-接收的请求格式，对应契约文件
-- produces
-- schemes
-- tags
-- externalDocs
+### `@ApiImplicitParams`
+
+### `@ApiImplicitParams`
+
+### `@ApiImplicitParam`
+
+### `@ApiResponses`
+
+### `@ApiResponse`
+
+### `@ApiOperation`
+
+### `@ResponseHeaders`
+
+### `@ResponseHeader`
 
 ## 示例代码
