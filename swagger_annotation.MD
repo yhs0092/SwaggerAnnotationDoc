@@ -15,7 +15,7 @@ Swagger提供了一套注解用于描述接口契约，用户使用注解，可�
 > `@Api`作用于类级别，在Swagger官方描述中是用于将一个Class标注为一个Swagger资源。但该注解在ServiceComb中不是必须的，ServiceComb可以根据`@RestSchema`和`@RpcSchema`确定需要从哪些类中解析出Swagger契约。<br/>
 ServiceComb当前支持的属性只有tags。
 
-| 属性 | 取值范围 | 说明 |
+| 属性 | 类型 | 说明 |
 | :--- | :------ | :--- |
 | tags | string | 设置当前Class下定义的operation的默认tag值 |
 
@@ -23,7 +23,7 @@ ServiceComb当前支持的属性只有tags。
 
 > `@SwaggerDefinition`作用于类级别，用于定义一个Swagger资源中的信息。
 
-| 属性 | 取值范围 | 说明 |
+| 属性 | 类型 | 说明 |
 | :--- | :------ | :--- |
 | info.title | string | 契约文件标题 |
 | info.description | string | 描述信息 |
