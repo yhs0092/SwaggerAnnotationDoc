@@ -34,17 +34,42 @@ ServiceComb当前支持的属性只有tags。
 | info.extensions | string | 扩展信息 |
 | consumes | string | 接收的请求格式 |
 | produces | string | 返回的应答格式 |
-| schemes | string | 可选值有`HTTP/HTTPS/WS/WSS` |
-| tags | string | Tag定义 |
-| externalDocs | string | 外部文档链接 |
-
-### `@ApiImplicitParams`
-
-### `@ApiImplicitParams`
+| schemes | SwaggerDefinition.Scheme | 可选值有`HTTP/HTTPS/WS/WSS/DEFAULT` |
+| tags | `@Tag` | Tag定义，@Tag包含name、description、externalDocs三个属性 |
+| externalDocs | `@externalDocs` | 外部说明文档链接，包含value、url两个属性 |
 
 ### `@ApiImplicitParam`
 
+> `@ApiImplicitParam`作用于方法级别，用于说明Swagger文档中operation的参数的属性。
+>
+> **注意**：ServiceComb可以根据代码和SpringMVC、JAX-RS的注解自动推断出参数名称。如果`@ApiImplicitParam`配置的参数名称与自动推断的参数名不同，则则该注解配置的参数将被作为一个新的参数加入到注解所在的operation中；否则将覆盖同名参数的属性。
+
+| 属性 | 类型 | 说明 |
+| :--- | :------ | :--- |
+| name | string | 参数名称 |
+| value | string | 参数说明 |
+| required | boolean | 是否是必填参数 |
+| dataType | string | 参数数据类型 |
+| paramType | string | 参数位置，有效的可选值为path/query/body/header/form |
+| allowableValues | string | 参数的有效值范围 |
+| allowEmptyValue | boolean | 是否允许空值 |
+| allowMultiple | boolean | 是否允许多个值（若为true，则可以将参数作为数组） |
+| collectionFormat | string | 以何种格式指定参数数组，当前ServiceComb支持的值为`csv/multi` |
+| defaultValue | string | 参数默认值 |
+| example | string | 一个非body参数的示例值 |
+| format | string | 允许用户自定义数据格式，详情参见Swagger官方文档 |
+
+### `@ApiImplicitParams`
+
+> `@ApiImplicitParams`作用于方法、类级别，用于批量指定多个`@ApiImplicitParam`。
+
+| 属性 | 类型 | 说明 |
+| :--- | :------ | :--- |
+| value | `@ApiImplicitParam` | 参数定义 |
+
 ### `@ApiResponses`
+
+
 
 ### `@ApiResponse`
 
