@@ -10,6 +10,8 @@ Swagger提供了一套注解用于描述接口契约，用户使用注解，可�
 
 关于Swagger注解的含义，可以在[Swagger注解文档](https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X)中找到官方说明。您可以对照该官方文档与本说明来了解如何在ServiceComb框架下使用注解指定Swagger契约的各项属性。
 
+在ServiceComb中，Swagger注解不是必须使用的。当用户使用SpringMVC和JAX-RS的注解来标注微服务方法时，ServiceComb可以根据这些注解的值推断出各微服务方法的契约信息。
+
 ### `@Api`
 
 > `@Api`作用于类级别，在Swagger官方描述中是用于将一个Class标注为一个Swagger资源。但该注解在ServiceComb中不是必须的，ServiceComb可以根据`@RestSchema`和`@RpcSchema`确定需要从哪些类中解析出Swagger契约。<br/>
@@ -21,7 +23,7 @@ ServiceComb当前支持的属性只有tags。
 
 ### `@SwaggerDefinition`
 
-> `@SwaggerDefinition`作用于类级别，用于定义一个Swagger资源中的信息。
+> 作用于类级别，用于定义一个Swagger资源中的信息。
 
 | 属性 | 类型 | 说明 |
 | :--- | :------ | :--- |
@@ -40,9 +42,25 @@ ServiceComb当前支持的属性只有tags。
 
 ### `@ApiOperation`
 
+> 作用于方法级别，用于描述一个Swagger operation。
+
+| 属性 | 类型 | 说明 |
+| :--- | :------ | :--- |
+| value | string | 方法的简要说明，对应于Swagger契约operation的`summary`字段 |
+| notes | string | 详细信息，对应于Swagger契约operation的`description`字段 |
+| tags | string | 标注operation的标签 |
+| code | int | 响应消息的HTTP状态码 |
+| response | Class<?> | 方法返回值类型 |
+| responseContainer | string | 包装返回值的容器类型，可选值为`List`、`Set`、`Map` |
+| responseHeaders | `@ResponseHeader` | 响应消息的HTTP头，ServiceComb支持的属性值为`name`、`response`、`responseContainer` |
+| consumes | string | 指定请求体的数据格式 |
+| produces | string | 指定响应体的数据格式 |
+| protocols | string | 设置可用的协议（schemes），可选值有`http`、`https`、`ws`、`wss`，逗号分隔 |
+| httpMethod | string | 设置HTTP方法 |
+
 ### `@ApiImplicitParam`
 
-> `@ApiImplicitParam`作用于方法级别，用于说明Swagger文档中operation的参数的属性。
+> 作用于方法级别，用于说明Swagger文档中operation的参数的属性。
 >
 > **注意**：ServiceComb可以根据代码和SpringMVC、JAX-RS的注解自动推断出参数名称。如果`@ApiImplicitParam`配置的参数名称与自动推断的参数名不同，则则该注解配置的参数将被作为一个新的参数加入到注解所在的operation中；否则将覆盖同名参数的属性。
 
