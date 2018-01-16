@@ -38,6 +38,8 @@ ServiceComb当前支持的属性只有tags。
 | tags | `@Tag` | Tag定义，@Tag包含name、description、externalDocs三个属性 |
 | externalDocs | `@externalDocs` | 外部说明文档链接，包含value、url两个属性 |
 
+### `@ApiOperation`
+
 ### `@ApiImplicitParam`
 
 > `@ApiImplicitParam`作用于方法级别，用于说明Swagger文档中operation的参数的属性。
@@ -67,16 +69,22 @@ ServiceComb当前支持的属性只有tags。
 | :--- | :------ | :--- |
 | value | `@ApiImplicitParam` | 参数定义 |
 
-### `@ApiResponses`
-
-
-
 ### `@ApiResponse`
 
-### `@ApiOperation`
+> 用于描述返回消息的HTTP状态码所表达的含义。通常`@ApiOperation`可以表示一个正常情况返回消息的HTTP状态码，其他情形下的HTTP状态码由本注解描述。根据Swagger官方文档的描述，本注解不应该直接用于方法级别，而应该被包含在`@ApiResponses`中。
 
-### `@ResponseHeaders`
+| 属性 | 类型 | 说明 |
+| :--- | :------ | :--- |
+| code | int | 返回消息的HTTP状态码 |
+| message | string | 返回值的说明信息 |
+| response | Class<?> | 返回值的类型 |
+| responseContainer | string | 返回值的包装容器，可选值为`List/Set/Map` |
+| responseHeaders | @ResponseHeader | 描述一组返回消息的HTTP头，ServiceComb支持的`@ResponseHeader`的属性有`name`、`description`、`response`、`responseContainer` |
 
-### `@ResponseHeader`
+### `@ApiResponses`
 
-## 示例代码
+> 作用于方法、类级别，用于指定和说明一组返回值。
+
+| 属性 | 类型 | 说明 |
+| :--- | :------ | :--- |
+| value | `@ApiResponse` | 返回消息说明 |
